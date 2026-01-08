@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payel Birthday</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        /* Music Button Styles */
+        .music-btn {
+            position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px;
+            background: #ff4d6d; border: 2px solid #fff; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; cursor: pointer;
+            z-index: 10000; box-shadow: 0 0 15px rgba(255, 77, 109, 0.6); transition: all 0.3s ease;
+        }
+        .music-btn i { color: white; font-size: 20px; }
+        .music-btn:hover { transform: scale(1.1); background: #d63353; }
+        .music-btn.playing { animation: rotateBtn 3s linear infinite; background: #ff0040; }
+        @keyframes rotateBtn { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Styling for the new typing text area */
+        #typing-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #d63353; /* Darker pink for contrast */
+            text-align: justify;
+            margin-top: 15px;
+            font-weight: 600;
+            border-top: 1px dashed #ffb7c5;
+            padding-top: 10px;
+        }
+
+        /* Ensure card is scrollable if text is long */
+        .card2-content {
+            max-height: 100%;
+            overflow-y: auto;
+            padding-right: 5px; 
+        }
+        /* Custom scrollbar for beauty */
+        .card2-content::-webkit-scrollbar { width: 5px; }
+        .card2-content::-webkit-scrollbar-thumb { background: #ff4d6d; border-radius: 10px; }
+    </style>
+</head>
+
+<body>
+    <!-- Audio -->
+    <audio id="bgMusic" loop>
+        <source src="music/happybirthday.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Music Button -->
+    <div class="music-btn" onclick="toggleMusic()">
+        <i class="fa-solid fa-music"></i>
+    </div>
+
+    <div id="wrapper">
+        <div class="flag__birthday">
+            <img src="./images/1.png" alt="" width="350" class="flag__left">
+            <img src="./images/1.png" alt="" width="350" class="flag__right">
+        </div>
+        <div class="content">
+            <div class="left">
+                <div class="title">
+                    <h1 class="happy">
+                        <span style="--t: 4s;">H</span><span style="--t: 4.2s;">a</span><span style="--t: 4.4s;">p</span><span style="--t: 4.6s;">p</span><span style="--t: 4.8s;">y</span>
+                    </h1>
+                    <h1 class="birthday">
+                        <span style="--t: 5s;">B</span><span style="--t: 5.2s;">i</span><span style="--t: 5.4s;">r</span><span style="--t: 5.6s;">t</span><span style="--t: 5.8s;">h</span><span style="--t: 6s;">d</span><span style="--t: 6.2s;">a</span><span style="--t: 6.4s;">y</span>
+                    </h1>
+                    <div class="hat">
+                        <img src="./images/hat.png" alt="" width="130">
+                    </div>
+                </div>
+                <div class="date__of__birth">
+                    <span></span>
+                </div>
+                <div class="btn">
+                    <button id="btn__letter">
+                        <div class="mail">
+                            Click Here Payel
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="right">
+                <div class="box__account">
+                    <div class="image">
+                        <img src="./images/unnamed.png" alt="">
+                    </div>
+                    <div class="name">
+                        <i class="fa-solid fa-heart"></i>
+                        <span>Dear Payel</span>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div class="balloon_one">
+                        <img width="100px" src="./images/balloon1.png" alt="">
+                    </div>
+                    <div class="balloon_two">
+                        <img width="100px" src="./images/balloon2.png" alt="">
+                    </div>
+                </div>
+                <div class="cricle">
+                    <div class="text__cricle">
+                        <span style="--i: 1;">h</span><span style="--i: 2;">a</span><span style="--i: 3;">p</span><span style="--i: 4;">p</span><span style="--i: 5;">y</span><span style="--i: 6;">-</span><span style="--i: 7;">b</span><span style="--i: 8;">i</span><span style="--i: 9;">r</span><span style="--i: 10;">t</span><span style="--i: 11;">h</span><span style="--i: 12;">d</span><span style="--i: 13;">a</span><span style="--i: 14;">y</span><span style="--i: 15;">-</span>
+                    </div>
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorations -->
+        <div class="decorate_star star1" style="--t: 15s;"></div>
+        <div class="decorate_star star2" style="--t: 15.2s;"></div>
+        <div class="decorate_star star3" style="--t: 15.4s;"></div>
+        <div class="decorate_star star4" style="--t: 15.6s;"></div>
+        <div class="decorate_star star5" style="--t: 15.8s;"></div>
+        <div class="decorate_flower--one" style="--t: 15s;"><img width="20" src="./images/decorate_flower.png" alt=""></div>
+        <div class="decorate_flower--two" style="--t: 15.3s;"><img width="20" src="./images/decorate_flower.png" alt=""></div>
+        <div class="decorate_flower--three" style="--t: 15.6s;"><img width="20" src="./images/decorate_flower.png" alt=""></div>
+        <div class="decorate_bottom"><img src="./images/decorate.png" alt="" width="100"></div>
+        <div class="smiley__icon"><img src="./images/smiley_icon.png" alt="" width="100"></div>
+
+        <!-- Mail Box / Card -->
+        <div class="boxMail">
+            <i class="fa-solid fa-xmark"></i>
+            <div class="boxMail-container">
+                <div class="card1">
+                    <div class="userImg">
+                        <img src="images/unnamed.png" alt="">
+                    </div>
+                    <h4 class="username">To: Oyshi 💖<span class="underline"></span></h4>
+                    <h3>Happy Birthday</h3>
+                    <div class="imageCute">
+                        <img src="cute1.png" alt="">
+                    </div>
+                </div>
+                <div class="card2">
+                    <div class="card2-content">
+                        <h3>To You!</h3>
+                        
+                        <!-- 1. ORIGINAL HARDCODED MESSAGE KEPT HERE -->
+                        <h2>Happy birthday 🥳🎂🥳 sweetheart.Explore new things, enjoy life to the fullest. I will be always there for you.I
+                            wish I could give you the world today on your birthday but since I can't, I hope this little surprise will make your day a bit brighter.
+                            🎈🎂🎈. Love you 2^128 times. Stay safe and healthy. Wish you the very best for your upcoming journey.</h2>
+                        
+                        <!-- 2. NEW DYNAMIC TYPING MESSAGE APPEARS HERE -->
+                        <p id="typing-text"></p> 
+                        
+                        <div class="imageCute2">
+                            <img src="cute2.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Music Logic ---
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.querySelector('.music-btn');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.classList.remove('playing');
+                musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+            } else {
+                music.play();
+                musicBtn.classList.add('playing');
+                musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // --- Date Animation ---
+        let datetxt = "10 january";
+        let charArrDate = datetxt.split('');
+        let currentIndex = 0;
+        let date__of__birth = document.querySelector(".date__of__birth span");
+
+        setTimeout(function () {
+            let timeDatetxt = setInterval(function () {
+                if (currentIndex < charArrDate.length) {
+                    date__of__birth.textContent += charArrDate[currentIndex];
+                    currentIndex++;
+                } else {
+                    let i = document.createElement("i");
+                    i.className = "fa-solid fa-star";
+                    document.querySelector(".date__of__birth").prepend(i);
+                    document.querySelector(".date__of__birth").appendChild(i.cloneNode(true));
+                    clearInterval(timeDatetxt);
+                }
+            }, 100);
+        }, 12000);
+
+        // --- Letter Typing Logic ---
+        // Your Custom Text to be typed below the hardcoded text
+        let datatxtletter = "My love. You are a very special girl. I always silently thank you for coming into my life. Today, I wish you all the best, lots of health, and lots of joy. I always hope we will celebrate many more birthdays like this together. Happy birthday to you.💕";
+        
+        let charArrLetter = datatxtletter.split('');
+        let currentLetter = 0;
+        let textContainer = document.getElementById("typing-text");
+        let typingInterval;
+
+        let mailBox = document.querySelector('.mail');
+        let boxmail = document.querySelector('.boxMail');
+        var close = document.querySelector('.fa-xmark');
+
+        // Click Event to Open Mail and Start Typing
+        mailBox.onclick = function () {
+            mailBox.classList.toggle('active');
+            boxmail.classList.add('active');
+
+            // Play music if not already playing
+            if (!isPlaying) {
+                toggleMusic();
+            }
+
+            // Start Typing Animation (only if it hasn't run yet)
+            if (textContainer.textContent.length === 0) {
+                typingInterval = setInterval(function() {
+                    if (currentLetter < charArrLetter.length) {
+                        textContainer.textContent += charArrLetter[currentLetter];
+                        currentLetter++;
+                    } else {
+                        clearInterval(typingInterval);
+                    }
+                }, 50); // Speed of typing
+            }
+        };
+
+        // Close Event
+        close.addEventListener('click', function () {
+            boxmail.classList.remove('active');
+        });
+
+    </script>
+</body>
+</html>
